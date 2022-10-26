@@ -5,15 +5,21 @@ services:
     image: nginx:alpine
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./hello.html:/var/www/html/taxinder/index.html
     ports:
       - ${ROOT_NGINX_PORT-8080}:80
     depends_on:
       # mention every host we try to resolve in our nginx.conf
       - api
+      - frontend
 
   api:
     container_name: main_api_server
     build: https://github.com/kluchi/taxinder-api.git
     environment:
       - API_BASE_PATH=/taxinder
+
+  frontend:
+    container_name: frontend_server
+    build: https://github.com/kluchi/taxinder-frontend.git
+    environment:
+      - FRONT_BASE_PATH=/taxinder
