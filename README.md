@@ -8,4 +8,4 @@ This repository contains deployment scripts and configuration examples for taxin
 | --- | --- | --- |
 | ROOT_NGINX_PORT | 8080 | Port root nginx container binds to |
 
-For configuration of individual containers see appropriate repositories: [taxinder-api](https://github.com/kluchi/taxinder-api)
+For configuration of individual containers see appropriate repositories: [taxinder-api](https://github.com/kluchi/taxinder-api), [taxinder-frontend](https://github.com/kluchi/taxinder-frontend)
