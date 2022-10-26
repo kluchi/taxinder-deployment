@@ -7,7 +7,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./hello.html:/var/www/html/taxinder/index.html
     ports:
-      - 8080:80
+      - ${ROOT_NGINX_PORT-8080}:80
 
   api:
     build: https://github.com/kluchi/taxinder-api.git
