@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install necessary tool versions
+        run: apt update && apt remove docker-compose && pip install docker-compose
       - name: Build the stack
         run: docker-compose up -d
       - name: Test
