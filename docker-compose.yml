@@ -1,10 +1,13 @@
 version: '3.8'
 services:
-  nginx:
+  root_nginx:
     container_name: root_nginx
     image: nginx:alpine
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PROXY_BASE_PATH=${PROXY_BASE_PATH-/}
     ports:
       - ${ROOT_NGINX_PORT-8080}:80
     depends_on:
@@ -16,10 +19,10 @@ services:
     container_name: main_api_server
     build: https://github.com/kluchi/taxinder-api.git
     environment:
-      - API_BASE_PATH=/taxinder
+      - API_BASE_PATH=${PROXY_BASE_PATH-/}
 
   frontend:
     container_name: frontend_server
     build: https://github.com/kluchi/taxinder-frontend.git
     environment:
-      - FRONT_BASE_PATH=/taxinder
+      - FRONT_BASE_PATH=${PROXY_BASE_PATH-/}
